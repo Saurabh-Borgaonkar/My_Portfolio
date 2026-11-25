@@ -8,9 +8,12 @@
 
 export const contactData = {
   headline: "LET'S BUILD SOMETHING.",
-  subheading:
-    'Open to full-stack and backend development opportunities. Feel free to reach out directly or send a message.',
+  subheading: 'Have an opportunity, project, or idea? Let\'s connect.',
   email: 'saurabhborgaonkar55@gmail.com',
+  resume: {
+    downloadUrl: '/resume/saurabh-resume.pdf?v=20261125',
+    filename: 'Saurabh_Borgaonkar_Resume.pdf',
+  },
   socials: [
     {
       id: 'social-github',
@@ -28,20 +31,12 @@ export const contactData = {
       username: 'saurabh-borgaonkar',
       icon: 'Linkedin',
     },
-    {
-      id: 'social-leetcode',
-      name: 'LeetCode',
-      label: 'LeetCode',
-      url: 'https://leetcode.com/u/Saurabhborgaonkar123/',
-      username: 'Saurabhborgaonkar123',
-      icon: 'Code',
-    },
   ],
   formFields: [
     {
       id: 'field-name',
       name: 'name',
-      label: 'Your Name',
+      label: 'Full Name',
       type: 'text',
       placeholder: 'Enter your full name',
       required: true,
@@ -50,7 +45,7 @@ export const contactData = {
     {
       id: 'field-email',
       name: 'email',
-      label: 'Your Email',
+      label: 'Email Address',
       type: 'email',
       placeholder: 'name@example.com',
       required: true,

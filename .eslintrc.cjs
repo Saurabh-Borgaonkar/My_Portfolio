@@ -31,5 +31,8 @@ module.exports = {
     // Code quality
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'prefer-const': 'warn',
+    // Allow React Three Fiber custom declarative elements/attributes
+    'react/no-unknown-property': 'off',
+    'react/no-unescaped-entities': 'off',
   },
 }

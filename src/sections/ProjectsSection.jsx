@@ -22,8 +22,6 @@ import {
   ExternalLink,
   Github,
   ArrowUpRight,
-  Sparkles,
-  Layers,
 } from 'lucide-react'
 import { gsap, ScrollTrigger } from '../animations/gsap.config.js'
 import useReducedMotion from '../hooks/useReducedMotion.js'

@@ -18,7 +18,7 @@
  */
 
 import { useState, useEffect, useMemo, useRef } from 'react'
-import { Calendar, AlertCircle, RefreshCw, Info, ChevronDown } from 'lucide-react'
+import { AlertCircle, RefreshCw, Info, ChevronDown } from 'lucide-react'
 import { getLeetCodeCalendar, VERIFIED_SNAPSHOT } from '../../services/leetcode.service.js'
 
 // Midnight Emerald theme levels (0, 1–2, 3–4, 5+)

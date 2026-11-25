@@ -55,7 +55,7 @@ export const profileData = {
     alt: 'Saurabh Borgaonkar — Full Stack Developer',
   },
   resume: {
-    downloadUrl: '/resume/saurabh-resume.pdf',
+    downloadUrl: '/resume/saurabh-resume.pdf?v=20261125',
     filename: 'Saurabh_Borgaonkar_Resume.pdf',
   },
 }

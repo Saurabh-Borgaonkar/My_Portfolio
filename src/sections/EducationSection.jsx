@@ -32,7 +32,6 @@ import {
   ExternalLink,
   Maximize2,
   X,
-  Sparkles,
   FileBadge,
   CheckCircle2,
 } from 'lucide-react'
