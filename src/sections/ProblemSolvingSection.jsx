@@ -86,35 +86,55 @@ export default function ProblemSolvingSection() {
             scrollTrigger: {
               trigger: headerRef.current,
               start: 'top 90%',
-              toggleActions: 'play none none none',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )
       }
 
-      // 2. Count-up Animation Trigger
+      // 2. Count-up and Card Reveal Animation Trigger
       if (counterRef.current) {
         const countObj = { val: 0 }
-        gsap.to(countObj, {
-          val: 250,
-          duration: 2.0,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: counterRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            onEnter: () => {
-              gsap.to(countObj, {
-                val: 250,
-                duration: 2.0,
-                ease: 'power2.out',
-                onUpdate: () => {
-                  setCount(Math.floor(countObj.val))
-                },
-              })
+        let countTween = null
+
+        const startCount = () => {
+          if (countTween) countTween.kill()
+          countObj.val = 0
+          countTween = gsap.to(countObj, {
+            val: 250,
+            duration: 1.8,
+            ease: 'power2.out',
+            onUpdate: () => {
+              setCount(Math.floor(countObj.val))
             },
-          },
-        })
+          })
+        }
+
+        const resetCount = () => {
+          if (countTween) countTween.kill()
+          countObj.val = 0
+          setCount(0)
+        }
+
+        gsap.fromTo(
+          counterRef.current,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: counterRef.current,
+              start: 'top 85%',
+              toggleActions: 'play reverse play reverse',
+              onEnter: startCount,
+              onEnterBack: startCount,
+              onLeave: resetCount,
+              onLeaveBack: resetCount,
+            },
+          }
+        )
       }
 
       // 3. Staggered Journey Cards
@@ -133,7 +153,7 @@ export default function ProblemSolvingSection() {
               scrollTrigger: {
                 trigger: journeyRef.current,
                 start: 'top 88%',
-                toggleActions: 'play none none none',
+                toggleActions: 'play reverse play reverse',
               },
             }
           )

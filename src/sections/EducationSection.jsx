@@ -45,6 +45,7 @@ export default function EducationSection() {
   const eduData = educationList[0] || {}
 
   const sectionRef = useRef(null)
+  const headerRef = useRef(null)
   const eduCardRef = useRef(null)
   const certsGridRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
@@ -76,6 +77,26 @@ export default function EducationSection() {
     }, 100)
 
     const ctx = gsap.context(() => {
+      // 1. Header Reveal
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 90%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        )
+      }
+
+      // 2. Education Card Reveal
       if (eduCardRef.current) {
         gsap.fromTo(
           eduCardRef.current,
@@ -88,12 +109,13 @@ export default function EducationSection() {
             scrollTrigger: {
               trigger: eduCardRef.current,
               start: 'top 88%',
-              toggleActions: 'play none none none',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )
       }
 
+      // 3. Staggered Certifications Grid Reveal
       if (certsGridRef.current) {
         const cards = certsGridRef.current.querySelectorAll('.cert-card')
         if (cards.length > 0) {
@@ -109,7 +131,7 @@ export default function EducationSection() {
               scrollTrigger: {
                 trigger: certsGridRef.current,
                 start: 'top 88%',
-                toggleActions: 'play none none none',
+                toggleActions: 'play reverse play reverse',
               },
             }
           )
@@ -126,7 +148,7 @@ export default function EducationSection() {
   return (
     <div ref={sectionRef} className="w-full">
       {/* ── Section Header ────────────────────────────────────────── */}
-      <div className="max-w-3xl mb-12 sm:mb-16">
+      <div ref={headerRef} className="max-w-3xl mb-12 sm:mb-16">
         <div className="inline-flex items-center gap-2 font-mono text-brand-accent text-xs sm:text-sm tracking-[0.25em] uppercase px-3.5 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-sm mb-4">
           <GraduationCap size={14} className="text-brand-accent" />
           <span>05 // Education &amp; Certifications</span>

@@ -44,6 +44,7 @@ export default function HeroScene({ prefersReducedMotion = false }) {
           alpha: true,
           powerPreference: 'high-performance',
         }}
+        resize={{ scroll: false, debounce: 0 }}
         className="w-full h-full"
       >
         <ambientLight intensity={0.4} />

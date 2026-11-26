@@ -74,7 +74,7 @@ export default function AboutSection() {
             scrollTrigger: {
               trigger: headerRef.current,
               start: 'top 90%',
-              toggleActions: 'play none none none',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )
@@ -93,7 +93,7 @@ export default function AboutSection() {
             scrollTrigger: {
               trigger: bioCardRef.current,
               start: 'top 88%',
-              toggleActions: 'play none none none',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )
@@ -115,7 +115,7 @@ export default function AboutSection() {
               scrollTrigger: {
                 trigger: skillsGridRef.current,
                 start: 'top 92%',
-                toggleActions: 'play none none none',
+                toggleActions: 'play reverse play reverse',
               },
             }
           )

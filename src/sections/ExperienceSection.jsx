@@ -50,7 +50,7 @@ export default function ExperienceSection() {
             scrollTrigger: {
               trigger: headerRef.current,
               start: 'top 90%',
-              toggleActions: 'play none none none',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )
@@ -72,7 +72,7 @@ export default function ExperienceSection() {
               scrollTrigger: {
                 trigger: timelineRef.current,
                 start: 'top 88%',
-                toggleActions: 'play none none none',
+                toggleActions: 'play reverse play reverse',
               },
             }
           )

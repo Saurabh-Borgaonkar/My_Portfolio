@@ -22,7 +22,7 @@
 
 import { useRef, useState, useEffect, useCallback, lazy, Suspense } from 'react'
 import { ArrowDown, Download, Sparkles } from 'lucide-react'
-import { gsap, ScrollTrigger } from '../animations/gsap.config.js'
+import { gsap } from '../animations/gsap.config.js'
 import {
   playSignatureIntro,
   getHasPlayedIntro,
@@ -60,6 +60,7 @@ export default function HeroSection() {
   const skipBtnRef = useRef(null)
   const headlineRef = useRef(null)
   const portraitRef = useRef(null)
+  const contentRef = useRef(null)
   const timelineRef = useRef(null)
 
   const prefersReducedMotion = useReducedMotion()
@@ -142,27 +143,38 @@ export default function HeroSection() {
     }
   }, [hasSeenIntro, prefersReducedMotion, handleSkipIntro])
 
-  // Scroll-driven Hero Transformation (GSAP ScrollTrigger)
+  // Scroll-driven Hero Content Transformation (GSAP ScrollTrigger)
+  // Animates ONLY the foreground content container (contentRef), leaving the section trigger
+  // (containerRef) and background 3D scene (HeroScene) completely unscaled and stable.
   useEffect(() => {
-    if (!containerRef.current || prefersReducedMotion) return
+    if (!containerRef.current || !contentRef.current || prefersReducedMotion) return
 
-    const st = ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 0.6,
-      onUpdate: (self) => {
-        const progress = self.progress
-        gsap.set(containerRef.current, {
-          opacity: 1 - progress * 0.7,
-          scale: 1 - progress * 0.05,
-          y: progress * 60,
-        })
-      },
-    })
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+        },
+        {
+          opacity: 0.3,
+          scale: 0.95,
+          y: 60,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        }
+      )
+    }, containerRef)
 
     return () => {
-      st.kill()
+      ctx.revert()
     }
   }, [prefersReducedMotion])
 
@@ -395,7 +407,10 @@ export default function HeroSection() {
       />
 
       {/* ── Main Hero Content (Always rendered immediately underneath) ── */}
-      <div className="section-container relative z-20 flex flex-col items-center text-center">
+      <div
+        ref={contentRef}
+        className="section-container relative z-20 flex flex-col items-center text-center"
+      >
         {/* Technical kicker tag */}
         <div className="mb-4 sm:mb-6 max-w-full px-2">
           <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2.5 font-mono text-brand-accent text-[11px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.25em] uppercase px-4 sm:px-5 py-2 sm:py-1.5 rounded-2xl sm:rounded-full border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-sm shadow-[0_0_15px_rgba(16,185,129,0.08)] leading-snug text-center">

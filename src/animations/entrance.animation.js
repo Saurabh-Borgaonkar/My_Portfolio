@@ -38,7 +38,7 @@ export function fadeUpOnScroll(target, options = {}) {
     scrollTrigger: {
       trigger: target,
       start,
-      toggleActions: 'play none none none',
+      toggleActions: 'play reverse play reverse',
     },
   })
 
@@ -78,7 +78,7 @@ export function staggerOnScroll(parent, childSelector, options = {}) {
     scrollTrigger: {
       trigger: parent,
       start,
-      toggleActions: 'play none none none',
+      toggleActions: 'play reverse play reverse',
     },
   })
 

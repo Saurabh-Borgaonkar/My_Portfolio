@@ -101,7 +101,7 @@ export default function ContactSection() {
             scrollTrigger: {
               trigger: headerRef.current,
               start: 'top 90%',
-              toggleActions: 'play none none none',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )
@@ -120,7 +120,7 @@ export default function ContactSection() {
             scrollTrigger: {
               trigger: infoColRef.current,
               start: 'top 85%',
-              toggleActions: 'play none none none',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )

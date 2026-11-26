@@ -33,8 +33,9 @@ export default function GeometryMesh() {
     }
 
     if (orbitRingRef.current) {
+      // Continuous rotation within its tilted orbital plane (Z-axis spin)
+      // Preserves orbital inclination (Math.PI / 3) and prevents proportion/size distortion over time
       orbitRingRef.current.rotation.z -= delta * 0.08
-      orbitRingRef.current.rotation.x += delta * 0.04
     }
 
     // Smooth mouse parallax response
